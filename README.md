@@ -52,6 +52,7 @@ BankingSystem/
 │       └── wsgi.py              # WSGI configuration
 ```
 ⚙️ Installation & Setup
+
 1️⃣ Clone the Repository
 git clone https://github.com/ManideepCoded/BankingSystem.git
 
