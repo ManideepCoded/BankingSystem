@@ -20,19 +20,22 @@ This project demonstrates full-stack web development using Django, HTML template
 | Database  | SQLite               |
 | Framework | Django Web Framework |
 
-📂 Project Structure
-bank_system
+## 📂 Project Structure
+
+```
+BankingSystem/
 │
-├── bank_project
+├── bank_project/                # Main Django project folder
+│
+│   ├── bank_app/                # Banking application module
 │   │
-│   ├── bank_app
-│   │   ├── models.py
-│   │   ├── views.py
-│   │   ├── forms.py
-│   │   ├── urls.py
-│   │   ├── admin.py
-│   │   │
-│   │   └── templates
+│   │   ├── models.py            # Database models (User, Account, Transactions, Loans)
+│   │   ├── views.py             # Business logic and request handling
+│   │   ├── forms.py             # Django forms for user input
+│   │   ├── urls.py              # App-level URL routing
+│   │   ├── admin.py             # Admin panel configuration
+│   │
+│   │   └── templates/           # HTML templates
 │   │       ├── login.html
 │   │       ├── register.html
 │   │       ├── dashboard.html
@@ -41,13 +44,13 @@ bank_system
 │   │       ├── transfer.html
 │   │       ├── transaction_history.html
 │   │       └── apply_loan.html
-│   │
-│   └── bank_project
-│       ├── settings.py
-│       ├── urls.py
-│       ├── asgi.py
-│       └── wsgi.py
-
+│
+│   └── bank_project/            # Project configuration
+│       ├── settings.py          # Django settings and configuration
+│       ├── urls.py              # Main URL routing
+│       ├── asgi.py              # ASGI configuration
+│       └── wsgi.py              # WSGI configuration
+```
 ⚙️ Installation & Setup
 1️⃣ Clone the Repository
 git clone https://github.com/ManideepCoded/BankingSystem.git
