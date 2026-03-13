@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-4">
+
+    <!-- Welcome Section -->
+    <div class="card shadow-sm border-0 rounded-4 mb-4">
+        <div class="card-body">
+            <h4 class="mb-1">Welcome, <span class="text-primary">{{ request.user.username }}</span> 👋</h4>
+            <p class="text-muted mb-0">Account Number: {{ account.account_number }}</p>
+        </div>
+    </div>
+
+    <!-- Balance Card -->
+    <div class="card shadow-lg border-0 rounded-4 mb-4 bg-primary text-white">
+        <div class="card-body text-center">
+            <h6 class="mb-2">Available Balance</h6>
+            <h2 class="fw-bold">₹ {{ account.balance }}</h2>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="row text-center mb-4">
+        <div class="col-md-3 mb-2">
+            <a href="{% url 'deposit' %}" class="btn btn-success w-100 rounded-3">Deposit</a>
+        </div>
+        <div class="col-md-3 mb-2">
+            <a href="{% url 'withdraw' %}" class="btn btn-warning w-100 rounded-3">Withdraw</a>
+        </div>
+        <div class="col-md-3 mb-2">
+            <a href="{% url 'transfer' %}" class="btn btn-info w-100 rounded-3 text-white">Transfer</a>
+        </div>
+        <div class="col-md-3 mb-2">
+            <a href="{% url 'apply_loan' %}" class="btn btn-dark w-100 rounded-3">Apply Loan</a>
+        </div>
+    </div>
+
+    <!-- Transaction History -->
+    <div class="card shadow-sm border-0 rounded-4">
+        <div class="card-body">
+            <h5 class="mb-3">Recent Transactions</h5>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Type</th>
+                            <th>Amount</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for transaction in transactions %}
+                        <tr>
+                            <td>
+                                {% if transaction.transaction_type == "Deposit" %}
+                                    <span class="badge bg-success">Deposit</span>
+                                {% elif transaction.transaction_type == "Withdraw" %}
+                                    <span class="badge bg-warning text-dark">Withdraw</span>
+                                {% elif transaction.transaction_type == "Transfer" %}
+                                    <span class="badge bg-info text-dark">Transfer</span>
+                                {% else %}
+                                    {{ transaction.transaction_type }}
+                                {% endif %}
+                            </td>
+                            <td class="fw-semibold">₹ {{ transaction.amount }}</td>
+                            <td class="text-muted">{{ transaction.timestamp|date:"d M Y, H:i" }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="3" class="text-center text-muted">No transactions yet</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="text-end">
+                <a href="{% url 'transactions' %}" class="btn btn-outline-primary btn-sm">
+                    View Full History
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
